@@ -19,9 +19,15 @@ import matplotlib.pyplot as plt # just to display images
 #Getting List image files and Labels from function getImagesLabel()
 files,labels = imageReader.getImageLabel()
 #Initializing the graph
+ -----------------------------------------------------------------------------
 
-input_feeder = tf.placeholder(tf.uint8)
-label_feeder = tf.placeholder(tf.string)
+############## Defining the inputs placeholders##############
+images_placeholder = tf.placeholder(tf.float32, shape=[None, 2352]) # 28 by 28 by 3-color channel(RBG)
+labels_placeholder = tf.placeholder(tf.string, shape=[None])
+
+############### Defining the variables to optimize ###############
+weights = tf.Variable(tf.zeros([2352, 10]))
+biases = tf.Variable(tf.zeros([10]))
 
 ############image reading function()###############
 def read_file_format(filenames_queue):
